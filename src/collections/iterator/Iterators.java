@@ -1,10 +1,12 @@
 package collections.iterator;
 
 import collections.interfaces.LinkableImpl;
+import collections.iteration.IteratorEx;
 import essentials.annotations.ToTest;
 import essentials.contract.Contract;
 import essentials.contract.InstanceNotAllowedException;
 import essentials.contract.ParameterNullException;
+import essentials.functional.exception.FunctionEx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
@@ -48,6 +50,20 @@ public final class Iterators {
 
             @Override
             public R next() {
+                return mapper.apply(iterator.next());
+            }
+        };
+    }
+
+    public static <T, R, X extends Exception> IteratorEx<R, X> map(IteratorEx<T, X> iterator, Function<T, R> mapper){
+        return new IteratorEx<>() {
+            @Override
+            public boolean hasNext() {
+                return iterator.hasNext();
+            }
+
+            @Override
+            public R next() throws X {
                 return mapper.apply(iterator.next());
             }
         };

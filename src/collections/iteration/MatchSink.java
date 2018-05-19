@@ -7,35 +7,35 @@ import java.util.function.Predicate;
  * @author Patrick
  * @since 19.01.2018
  */
-abstract class MatchSink<T> extends TerminationSink<T>  {
-    protected final IterationPredicate<T> _predicate;
+abstract class MatchSink<T, X extends Exception> extends TerminationSink<T, X>  {
+    protected final IterationPredicate<T, X> _predicate;
     protected long _index;
 
-    public MatchSink(Iterator<T> aggregator, IterationPredicate<T> predicate) {
+    public MatchSink(IteratorEx<T, X> aggregator, IterationPredicate<T, X> predicate) {
         super(aggregator);
         _predicate = predicate;
     }
 
-    public MatchSink(Iterator<T> aggregator, Predicate<T> predicate) {
+    public MatchSink(IteratorEx<T, X> aggregator, Predicate<T> predicate) {
         this(aggregator, (value, index) -> predicate.test(value));
     }
 
-    public abstract boolean doesMatch();
+    public abstract boolean doesMatch() throws Exception;
 
     //<editor-fold desc="Concrete Classes">
-    public static final class MatchAllSink<T> extends MatchSink<T> {
+    public static final class MatchAllSink<T, X extends Exception> extends MatchSink<T, X> {
 
         //<editor-fold desc="Constructors">
-        public MatchAllSink(Iterator<T> aggregator, IterationPredicate<T> predicate) {
+        public MatchAllSink(IteratorEx<T, X> aggregator, IterationPredicate<T, X> predicate) {
             super(aggregator, predicate);
         }
 
-        public MatchAllSink(Iterator<T> aggregator, Predicate<T> predicate) {
+        public MatchAllSink(IteratorEx<T, X> aggregator, Predicate<T> predicate) {
             super(aggregator, predicate);
         }
         //</editor-fold>
 
-        public boolean doesMatch() {
+        public boolean doesMatch() throws X {
             boolean allMatch = true;
 
             while (_source.hasNext() && allMatch){
@@ -48,19 +48,19 @@ abstract class MatchSink<T> extends TerminationSink<T>  {
     }
 
 
-    public static final class MatchAnySink<T> extends MatchSink<T> {
+    public static final class MatchAnySink<T, X extends Exception> extends MatchSink<T, X> {
 
         //<editor-fold desc="Constructors">
-        public MatchAnySink(Iterator<T> aggregator, IterationPredicate<T> predicate) {
+        public MatchAnySink(IteratorEx<T, X> aggregator, IterationPredicate<T, X> predicate) {
             super(aggregator, predicate);
         }
 
-        public MatchAnySink(Iterator<T> aggregator, Predicate<T> predicate) {
+        public MatchAnySink(IteratorEx<T, X> aggregator, Predicate<T> predicate) {
             super(aggregator, predicate);
         }
         //</editor-fold>
 
-        public boolean doesMatch() {
+        public boolean doesMatch() throws X {
             boolean anyMatch = false;
 
             while (_source.hasNext() && !anyMatch){

@@ -4,7 +4,7 @@
 
     <groupId>Hephaestus</groupId>
     <artifactId>hephaestus-collections</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <packaging>jar</packaging>
     <description>TODO</description>
     <name>${project.groupId}:${project.artifactId}:${project.version}</name>
@@ -37,7 +37,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>hephaestus-essentials</artifactId>
-            <version>1.0.1</version>
+            <version>1.0.4</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

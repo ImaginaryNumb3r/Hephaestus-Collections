@@ -1,13 +1,14 @@
 package collections.iteration;
 
 import essentials.annotations.ToTest;
+import essentials.functional.PredicateEx;
+import essentials.functional.exception.BinaryOperatorEx;
+import essentials.functional.exception.ConsumerEx;
+import essentials.functional.exception.FunctionEx;
 
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
+import java.util.function.*;
 import java.util.stream.Collector;
 
 /**
@@ -17,28 +18,34 @@ import java.util.stream.Collector;
  * and iterates the aggregated iterator.
  * In other words, it will use the backing iterator and might allocate a new backing collection.
  */
-public interface Termination<T> {
+public interface Termination<T, X extends Exception> {
 
     @ToTest
-    Iteration<T> toDistinct();
+    IterationEx<T, X> toDistinct() throws X ;
 
     @ToTest
-    Iteration<T> toSorted(Comparator<T> comparator);
+    IterationEx<T, X> toSorted(Comparator<T> comparator);
 
     @ToTest
-    <R> Iteration<R> toFlattened(Function<T, Iterable<R>> mapper);
+    <R> IterationEx<R, X> toFlattened(FunctionEx<T, Supplier<IteratorEx<R, X>>, X> mapper) throws X;
 
     @ToTest
-    Iteration<T> toReverse();
+    IterationEx<T, X> toReverse() throws X;
 
     @ToTest
-    Optional<T> reduce(BinaryOperator<T> operation);
+    Optional<T> reduce(BinaryOperatorEx<T, X> operation) throws X;
+
+    /**
+     * A terminating method which performs an action for all remaining items in the iteration.
+     * Furthermore, a new iteration with a new list of the just iterated values is returned.
+     * @param action the performed action for each value.
+     * @return New Iteration, containing all just visited items in a newly allocated collection.
+     */
+    @ToTest
+    IterationEx<T, X> visitEach(ConsumerEx<T, X> action) throws X;
 
     @ToTest
-    Iteration<T> visitEach(Consumer<T> action);
-
-    @ToTest
-    void forEach(Consumer<T> action);
+    void forEach(ConsumerEx<T, X> action) throws X;
 
     <R, A> R collect(Collector<T, A, R> collector);
 
@@ -46,31 +53,34 @@ public interface Termination<T> {
     <R> R collect(LinearCollector<T, R> collector);
 
     @ToTest
-    Optional<T> min(Comparator<T> comparator);
+    Optional<T> min(Comparator<T> comparator) throws X;
 
     @ToTest
-    Optional<T> max(Comparator<T> comparator);
+    Optional<T> max(Comparator<T> comparator) throws X;
 
-    long count();
-
-    @ToTest
-    boolean anyMatch(Predicate<T> predicate);
+    long count() throws X;
 
     @ToTest
-    boolean anyMatch(IterationPredicate<T> predicate);
+    boolean anyMatch(PredicateEx<T, X> predicate) throws X;
 
     @ToTest
-    boolean allMatch(Predicate<T> predicate);
+    boolean anyMatch(IterationPredicate<T, X> predicate) throws X;
 
     @ToTest
-    boolean allMatch(IterationPredicate<T> predicate);
+    boolean allMatch(PredicateEx<T, X> predicate) throws X;
 
     @ToTest
-    boolean noneMatch(Predicate<T> predicate);
+    boolean allMatch(IterationPredicate<T, X> predicate) throws X;
 
     @ToTest
-    boolean noneMatch(IterationPredicate<T> predicate);
+    boolean noneMatch(PredicateEx<T, X> predicate) throws X;
 
     @ToTest
-    Optional<T> first();
+    boolean noneMatch(IterationPredicate<T, X> predicate) throws X;
+
+    @ToTest
+    boolean isDistinct() throws X;
+
+    @ToTest
+    Optional<T> first() throws X;
 }

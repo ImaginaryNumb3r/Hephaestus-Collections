@@ -1,6 +1,5 @@
 package collections.interfaces;
 
-
 import java.util.NoSuchElementException;
 import java.util.function.Consumer;
 import java.util.function.Function;

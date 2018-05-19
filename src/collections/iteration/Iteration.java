@@ -19,7 +19,7 @@ import java.util.function.IntConsumer;
  * A ListIteration class focusing around ListIterators could be considered.
  * However, at this point you will probably use a Stream and the Java api for it.
  */
-public interface Iteration<T> extends Computation<T>, Termination<T> {
+public interface Iteration<T> extends IterationHelper<T> {
 
     /**
      * Returns true if the Iteration can be executed. Otherwise an {@code IllegalStateException} will be thrown.

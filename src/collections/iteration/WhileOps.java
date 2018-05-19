@@ -1,6 +1,5 @@
 package collections.iteration;
 
-import java.util.Iterator;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 
@@ -8,26 +7,26 @@ import java.util.function.Predicate;
  * @author Patrick
  * @since 15.01.2018
  */
-final class WhileOps<T> extends FilterOps<T> {
+final class WhileOps<T, X extends Exception> extends FilterOps<T, X> {
     private final boolean _startAccepting;
     private boolean _stopIteration;
 
-    public WhileOps(Iterator<T> aggregator, IterationPredicate<T> predicate, boolean startAccepting) {
+    public WhileOps(IteratorEx<T, X> aggregator, IterationPredicate<T, X> predicate, boolean startAccepting) {
         super(aggregator, predicate);
         _startAccepting = startAccepting;
         _stopIteration = false;
     }
 
-    public WhileOps(Iterator<T> aggregator, Predicate<T> predicate, boolean startAccepting) {
+    public WhileOps(IteratorEx<T, X> aggregator, Predicate<T> predicate, boolean startAccepting) {
         this(aggregator, (item, index) -> predicate.test(item), startAccepting);
     }
 
-    public WhileOps(Iterator<T> aggregator, LongPredicate predicate, boolean startAccepting) {
+    public WhileOps(IteratorEx<T, X> aggregator, LongPredicate predicate, boolean startAccepting) {
         this(aggregator, (item, index) -> predicate.test(index), startAccepting);
     }
 
     @Override
-    protected boolean test(T item) {
+    protected boolean test(T item) throws X {
         // If iteration is ongoing, check if the predicate is violated.
         if (!_stopIteration) {
             // Predicate must conform to the initial boolean acceptance value.

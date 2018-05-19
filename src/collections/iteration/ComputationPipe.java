@@ -22,18 +22,18 @@ import java.util.NoSuchElementException;
  * is up to date. However, because an Iteration discards parallelism in favour of simplicity, this is an
  * acceptable issue.
  */
-abstract class ComputationPipe<in, out> implements Iterator<out> {
+abstract class ComputationPipe<in, out, X extends Exception> implements IteratorEx<out, X> {
     private static final int CURSOR_START = -1;
-    protected final Iterator<in> _source;
+    protected final IteratorEx<in, X> _source;
     protected int _cursorPos; // The index matchAllSink the element in the backing iteration.
     private out _next;
 
-    public ComputationPipe(Iterator<in> source) {
+    public ComputationPipe(IteratorEx<in, X> source) {
         _source = source;
         _cursorPos = CURSOR_START;
     }
 
-    public out output() {
+    public out output() throws X {
         in input;
 
         // Skip elements until they satisfy the test criteria.
@@ -53,7 +53,7 @@ abstract class ComputationPipe<in, out> implements Iterator<out> {
 
     protected abstract out compute(in item);
 
-    protected abstract boolean test(in item);
+    protected abstract boolean test(in item) throws X;
 
     @Override
     public boolean hasNext() {
@@ -61,7 +61,7 @@ abstract class ComputationPipe<in, out> implements Iterator<out> {
     }
 
     @Override
-    public out next() {
+    public out next() throws X{
         if (_cursorPos == CURSOR_START){
             _next = output();
         }

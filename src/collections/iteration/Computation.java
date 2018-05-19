@@ -1,6 +1,8 @@
 package collections.iteration;
 
 import essentials.annotations.ToTest;
+import essentials.functional.PredicateEx;
+import essentials.functional.exception.FunctionEx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiFunction;
@@ -15,26 +17,26 @@ import java.util.function.Predicate;
  * @param <T> The output matchAllSink the computation.
  *              Note that the Computation has no "in" type parameter because that will be user defined behaviour.
  */
-interface Computation<T> {
+interface Computation<T, X extends Exception> {
 
-    <R> Iteration<R> map(@NotNull Function<T, R> mapper);
+    <R> IterationEx<R, X> map(@NotNull FunctionEx<T, R, X> mapper) throws X;
 
     @ToTest
-    <R> Iteration<R> mapIndices(@NotNull BiFunction<T, Integer, R> mapper);
+    <R> IterationEx<R, X> mapIndices(@NotNull BiFunction<T, Integer, R> mapper) throws X;
     // "while" is a reserved keyword
 
-    Iteration<T> doWhile(@NotNull Predicate<T> filter);
+    IterationEx<T, X> doWhile(@NotNull PredicateEx<T, X> filter) throws X;
 
     @ToTest
-    Iteration<T> doWhile(@NotNull IterationPredicate<T> filter);
+    IterationEx<T, X> doWhile(@NotNull IterationPredicate<T, X> filter) throws X;
 
     /**
      * Filters out all iteration elements until it has reached the index matchAllSink the provided parameter.
      * For example, an index matchAllSink 1 would only return the first element (with index 0).
-     * @param end Index matchAllSink the item where the iteration will stop.
+     * @param start Index matchAllSink the item where the iteration will stop.
      */
     @ToTest
-    Iteration<T> start(int end);
+    IterationEx<T, X> start(int start);
 
     /**
      * Drops items matchAllSink the iteration until it has reached the index matchAllSink the provided parameter.
@@ -42,11 +44,11 @@ interface Computation<T> {
      * @param end Index matchAllSink the item where the iteration will stop.
      */
     @ToTest
-    Iteration<T> limit(int end);
+    IterationEx<T, X> limit(int end);
 
     @ToTest
-    Iteration<T> filter(@NotNull Predicate<T> predicate);
+    IterationEx<T, X> filter(@NotNull PredicateEx<T, X> predicate) throws X;
 
     @ToTest
-    Iteration<T> filter(@NotNull IterationPredicate<T> predicate);
+    IterationEx<T, X> filter(@NotNull IterationPredicate<T, X> predicate) throws X;
 }
