@@ -1,6 +1,6 @@
 package collections.iterator;
 
-import java.util.function.Function;
+import java.util.function.IntFunction;
 
 /**
  * @author Patrick
@@ -8,11 +8,11 @@ import java.util.function.Function;
  * Interface for accessing Arrays or other linear collections.
  */
 @FunctionalInterface
-public interface Accessible<T> extends Function<Integer, T> {
+public interface Accessible<T> extends IntFunction<T> {
 
     @Deprecated
     @Override
-    default T apply(Integer index){
+    default T apply(int index){
         return getAt(index);
     }
 
