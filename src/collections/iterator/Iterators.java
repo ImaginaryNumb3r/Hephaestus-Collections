@@ -6,9 +6,11 @@ import essentials.annotations.ToTest;
 import essentials.contract.Contract;
 import essentials.contract.InstanceNotAllowedException;
 import essentials.contract.ParameterNullException;
+import essentials.functional.ArrayConstructor;
 import essentials.functional.exception.FunctionEx;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Objects;
@@ -37,6 +39,16 @@ public final class Iterators {
     public static <T> ListIterator<T> reverse(@NotNull ListIterator<T> listIterator) {
         return new ReverseListIterator<>(listIterator);
     }
+
+    public static <T> T[] toArray(Iterator<T> iterator, ArrayConstructor<T> constructor) {
+        ArrayList<T> list = new ArrayList<>();
+        for (T element : Iterables.of(iterator)) {
+            list.add(element);
+        }
+
+        return list.toArray(constructor.make(list.size()));
+    }
+
     //</editor-fold>
 
     //<editor-fold desc="Iterator Construction">
@@ -50,20 +62,6 @@ public final class Iterators {
 
             @Override
             public R next() {
-                return mapper.apply(iterator.next());
-            }
-        };
-    }
-
-    public static <T, R, X extends Exception> IteratorEx<R, X> map(IteratorEx<T, X> iterator, Function<T, R> mapper){
-        return new IteratorEx<>() {
-            @Override
-            public boolean hasNext() {
-                return iterator.hasNext();
-            }
-
-            @Override
-            public R next() throws X {
                 return mapper.apply(iterator.next());
             }
         };

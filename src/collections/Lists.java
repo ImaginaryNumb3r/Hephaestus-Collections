@@ -93,46 +93,6 @@ public final class Lists {
     public static <T> List<T> toList(@NotNull Iterator<T> iterator){
         return toArrayList(() -> iterator);
     }
-
-    /* TODO: Move to Functional package
-    public static <T> LinearCollector<T, LinkedList<T>> linkedListCollector(){
-        return new CollectionCollector<>() {
-            public Supplier<LinkedList<T>> supplier() {
-                return LinkedList::new;
-            }
-        };
-    }
-
-    public static <T> LinearCollector<T, ArrayList<T>> arrayListCollector(){
-        return new CollectionCollector<>() {
-            public Supplier<ArrayList<T>> supplier() {
-                return ArrayList::new;
-            }
-        };
-    }
-
-    private static abstract class CollectionCollector<T, C extends Collection<T>> implements LinearCollector<T, C> {
-
-        private CollectionCollector() {
-            characteristics().add(IDENTITY_FINISH);
-        }
-
-        @Override
-        public abstract Supplier<C> supplier();
-
-        @Override
-        public BiConsumer<C, T> accumulator() {
-            return Collection::add;
-        }
-
-        @Override
-        public BinaryOperator<C> combiner() {
-            return (left, right) -> {
-                left.addAll(right);
-                return left;
-            };
-        }
-    }
-*/
+    
     //</editor-fold>
 }

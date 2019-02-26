@@ -1,6 +1,7 @@
 package collections;
 
 import collections.iterator.Iterables;
+import collections.iterator.Iterators;
 import essentials.annotations.ToTest;
 import essentials.contract.InstanceNotAllowedException;
 import essentials.contract.NoImplementationException;
@@ -191,12 +192,7 @@ public final class Maps {
 
     @SafeVarargs
     public static <K, V> Set<V> innerJoinAll(Map<K, V>... maps){
-        return innerJoinAll(Iterables.of(maps));
-    }
-
-    @ToTest // TODO: Test
-    public static <K, V> Set<V> innerJoinAll(Iterable<Map<K, V>> maps){
-        throw new NoImplementationException();
+        return innerJoinAll(Iterators.of(maps));
     }
 
     @ToTest // TODO: Test

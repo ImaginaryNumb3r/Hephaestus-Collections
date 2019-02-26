@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class MappingOpsTest {
 
     @Test
-    public void testMapping() throws Exception {
+    public void testMapping() {
         int[] intValues = {0, 1, 2, 3, 4, 5};
         String[] stringValues = {"0", "1", "2", "3", "4", "5"};
         ListIterator<Integer> iterator = Iterators.of(intValues);
@@ -28,7 +28,7 @@ public class MappingOpsTest {
     }
 
     @Test
-    public void testIndexMapping() throws Exception {
+    public void testIndexMapping() {
         String[] strings = {"a", "ba", null, "ao", "%"};
         Integer[] indices = {0, 1, 2, 3, 4};
 

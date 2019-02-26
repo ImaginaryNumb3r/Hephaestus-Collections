@@ -11,7 +11,7 @@ import java.util.Objects;
 public class MatchSinkTest {
 
     @Test
-    public void testMatchAll() throws Exception {
+    public void testMatchAll() {
         Integer[] negatives = {-1, -2, -3, -12283, -90124};
 
         boolean allMatch = Iteration.of(negatives)
@@ -24,7 +24,7 @@ public class MatchSinkTest {
     }
 
     @Test
-    public void testMatchNone() throws Exception {
+    public void testMatchNone() {
         Integer[] negatives = {-1, -2, -3, -12283, -90124};
 
         boolean allMatch = Iteration.of(negatives)

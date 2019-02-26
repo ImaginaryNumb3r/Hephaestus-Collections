@@ -10,7 +10,7 @@ import org.junit.Test;
 public class WhileOpsTest {
 
     @Test
-    public void testAbort() throws Exception {
+    public void testAbort() {
         Boolean[] booleans = {true, true, true, true, false, true, true};
         int expectedCount = 4;
 
@@ -22,7 +22,7 @@ public class WhileOpsTest {
     }
 
     @Test
-    public void testNoAbort() throws Exception {
+    public void testNoAbort() {
         Boolean[] booleans = {true, true, true, true, true, true, true};
         int expectedCount = 7;
 

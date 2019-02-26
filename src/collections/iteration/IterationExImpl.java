@@ -37,5 +37,4 @@ class IterationExImpl<T, X extends Exception> implements ComputationHelper<T, X>
     public boolean executed() {
         return !_source.hasNext();
     }
-
 }

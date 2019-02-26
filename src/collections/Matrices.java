@@ -4,7 +4,9 @@ import collections.matrix.MatrixCellConsumer;
 import collections.matrix.MatrixCellSupplier;
 import essentials.functional.ArrayConstructor;
 import essentials.functional.MatrixConstructor;
+import essentials.functional.TriFunction;
 
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -15,7 +17,6 @@ import java.util.stream.Stream;
  * @since 07.01.2018
  * @noinspection WeakerAccess
  */
-// TODO: Move to Collections Framework
 public final class Matrices {
 
     /**
@@ -70,7 +71,7 @@ public final class Matrices {
      * @param mapFunction mapping old values to new ones
      */
     public static <T> void map(T[][] matrix, Function<T, T> mapFunction){
-        indexedForeach(matrix, (x, y) -> matrix[x][y] = mapFunction.apply(matrix[x][y]));
+        indexedMap(matrix, (value, i, j) -> mapFunction.apply(value));
     }
 
     /**
@@ -78,8 +79,13 @@ public final class Matrices {
      * @param matrix containing all values
      * @param mapFunction mapping old values to new ones
      */
-    public static <T> void indexedMap(T[][] matrix, MatrixCellSupplier<T> mapFunction){
-        indexedForeach(matrix, (x, y) -> matrix[x][y] = mapFunction.make(x, y));
+    public static <T> void indexedMap(T[][] matrix, TriFunction<T, Integer, Integer, T> mapFunction){
+        for (int i = 0; i != matrix.length; ++i) {
+            for (int j = 0; j != matrix[0].length; ++i) {
+                T value = matrix[i][j];
+                matrix[i][j] = mapFunction.apply(value, i, j);
+            }
+        }
     }
 
     /**
@@ -108,6 +114,14 @@ public final class Matrices {
         return matrix;
     }
 
+    public static <T> void compute(T[][] matrix, BinaryOperator<T> function) {
+        for (T[] line : matrix) {
+            for (T element : line) {
+
+            }
+        }
+    }
+
     /**
      * Creates a matrix with the specified dimensions and initializes it with the given supplier.
      * Throws exceptions according to usual array creation.
@@ -132,7 +146,7 @@ public final class Matrices {
                 .flatMap(Stream::of);
     }
 
-    public static <T> void foreachArray(T[][] matrix, Consumer<T[]> consumer){
+    public static <T> void foreachLine(T[][] matrix, Consumer<T[]> consumer){
         for (T[] array : matrix) {
             consumer.accept(array);
         }

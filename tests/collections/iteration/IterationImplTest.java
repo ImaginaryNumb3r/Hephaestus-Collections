@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class IterationImplTest {
 
     @Test
-    public void testDistinct() throws Exception {
+    public void testDistinct() {
         Integer[] values = {0, 0, 1, 2, 3, 1, 4, 5, 0, null, null, 3};
         Integer[] expected = {0, 1, 2, 3, 4, 5, null};
 

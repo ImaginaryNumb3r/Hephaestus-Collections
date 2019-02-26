@@ -27,7 +27,7 @@ public class MatrixSplitter<T> implements Collector<T[][], ArrayList<T>, ArrayLi
     @Override
     public BiConsumer<ArrayList<T>, T[][]> accumulator() {
         return (arrayList, ts) ->
-                Matrices.foreachArray(ts,
+                Matrices.foreachLine(ts,
                         array -> arrayList.addAll(Arrays.asList(array)));
     }
 
