@@ -28,7 +28,14 @@
             </snapshots>
         </repository>
     </repositories> -->
-
+    
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+    
     <dependencies>
         <dependency>
             <groupId>org.jetbrains</groupId>
@@ -37,8 +44,8 @@
         </dependency>
         <dependency>
             <groupId>com.github.ImaginaryNumb3r</groupId>
-            <artifactId>hephaestus-essentials</artifactId>
-            <version>1.0</version>
+            <artifactId>Hephaestus-Essentials</artifactId>
+            <version>-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

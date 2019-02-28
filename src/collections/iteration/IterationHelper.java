@@ -1,7 +1,7 @@
 package collections.iteration;
 
 import essentials.annotations.ToTest;
-import essentials.functional.PredicateEx;
+import essentials.functional.exception.PredicateEx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.BiFunction;

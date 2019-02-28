@@ -1,10 +1,10 @@
 package collections.iteration;
 
 import essentials.annotations.ToTest;
-import essentials.functional.PredicateEx;
 import essentials.functional.exception.BinaryOperatorEx;
 import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.FunctionEx;
+import essentials.functional.exception.PredicateEx;
 
 import java.util.Comparator;
 import java.util.Optional;

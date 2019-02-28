@@ -1,11 +1,12 @@
 package collections.iteration;
 
 import collections.iterator.CompositeIterator;
-import essentials.comparison.Comparison;
-import essentials.functional.PredicateEx;
+import essentials.comparison.RichComparator;
+import essentials.functional.Predicates;
 import essentials.functional.exception.BinaryOperatorEx;
 import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.FunctionEx;
+import essentials.functional.exception.PredicateEx;
 
 import java.util.*;
 import java.util.function.IntPredicate;
@@ -123,7 +124,7 @@ interface TerminationHelper<T, X extends Exception> extends Termination<T, X> {
 
     @Override
     default Optional<T> min(Comparator< T> comparator) throws X {
-        return desiredExtreme(comparator, Comparison::isSmaller);
+        return desiredExtreme(comparator, RichComparator::isSmaller);
     }
 
     /**
@@ -152,7 +153,7 @@ interface TerminationHelper<T, X extends Exception> extends Termination<T, X> {
 
     @Override
     default Optional<T> max(Comparator<T> comparator) throws X {
-        return desiredExtreme(comparator, Comparison::isGreater);
+        return desiredExtreme(comparator, RichComparator::isGreater);
     }
 
     @Override
