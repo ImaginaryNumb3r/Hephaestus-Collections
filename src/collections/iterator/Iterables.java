@@ -20,6 +20,10 @@ public final class Iterables {
         return () -> Iterators.of(objects);
     }
 
+    public static Iterable<Character> of(CharSequence string){
+        return () -> Iterators.of(string);
+    }
+
     public static <T> IterableList<T> ofReverse(ListIterator<T> objects){
         return Iterables.ofReverse(objects);
     }

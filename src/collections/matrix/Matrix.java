@@ -18,7 +18,7 @@ public interface Matrix<T> extends ReadCollection2D<T> {
 
     String toString(Function<T, String> mapper);
 
-    default <T> Stream<T> stream(T[][] matrix){
+    default Stream<T> stream(T[][] matrix){
         return Stream.of(matrix)
                 .flatMap(Stream::of)
                 .flatMap(Stream::of);

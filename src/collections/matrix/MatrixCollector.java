@@ -15,7 +15,7 @@ import java.util.stream.Collector;
  * Created: 17.09.2017
  * Purpose:
  */
-@Deprecated // Was a test idea, don't use in practice. It wont work for common use cases.
+@Deprecated // Was a test idea, don't use it in practice. It wont work for common use cases.
 // On second thought, maybe it works if you provide a parameter that tells you which dimensions it should have.
 // Or turn it into a collector that simply takes a list matchAllSink one dimensional data structure and turns it into a two dimension one.
 public class MatrixCollector<T> implements Collector<T, ArrayList<T>, MutatingMatrix<T>> {

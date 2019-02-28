@@ -20,9 +20,13 @@ abstract class MatchSink<T, X extends Exception> extends TerminationSink<T, X>  
         this(aggregator, (value, index) -> predicate.test(value));
     }
 
+    /**
+     * The common abstract method to test for the matchings.
+     * Implemented for "allMatch" and "anyMatch".
+     */
     public abstract boolean doesMatch() throws Exception;
 
-    //<editor-fold desc="Concrete Classes">
+    //<editor-fold desc="Match All">
     public static final class MatchAllSink<T, X extends Exception> extends MatchSink<T, X> {
 
         //<editor-fold desc="Constructors">
@@ -41,13 +45,15 @@ abstract class MatchSink<T, X extends Exception> extends TerminationSink<T, X>  
             while (_source.hasNext() && allMatch){
                 T current = _source.next();
                 allMatch = _predicate.test(current, _index);
+                ++_index;
             }
 
             return allMatch;
         }
     }
+    //</editor-fold>
 
-
+    //<editor-fold desc="Match Any">
     public static final class MatchAnySink<T, X extends Exception> extends MatchSink<T, X> {
 
         //<editor-fold desc="Constructors">
@@ -66,6 +72,7 @@ abstract class MatchSink<T, X extends Exception> extends TerminationSink<T, X>  
             while (_source.hasNext() && !anyMatch){
                 T current = _source.next();
                 anyMatch = _predicate.test(current, _index);
+                ++_index;
             }
 
             return anyMatch;
