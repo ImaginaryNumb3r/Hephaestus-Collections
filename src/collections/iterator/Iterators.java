@@ -1,13 +1,12 @@
 package collections.iterator;
 
 import collections.interfaces.LinkableImpl;
-import collections.iteration.IteratorEx;
 import essentials.annotations.ToTest;
+import essentials.collections.ArrayListIterator;
 import essentials.contract.Contract;
 import essentials.contract.InstanceNotAllowedException;
 import essentials.contract.ParameterNullException;
 import essentials.functional.ArrayConstructor;
-import essentials.functional.exception.FunctionEx;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -74,8 +73,7 @@ public final class Iterators {
      * @return the iterator output the given array
      */
     public static <T> ListIterator<T> of(T... array){
-        Contract.checkNull(array);
-        return new ArrayListIterator<>(array);
+        return ArrayListIterator.of(array);
     }
 
     public static ListIterator<Character> of(@NotNull CharSequence sequence){

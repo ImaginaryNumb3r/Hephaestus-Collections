@@ -70,7 +70,7 @@ public class StringIterator implements Iterator<Character> {
 
     @Override
     public boolean equals(Object obj) {
-        return obj instanceof ArrayIterator && this.hashCode() == obj.hashCode();
+        return obj instanceof StringIterator && this.hashCode() == obj.hashCode();
     }
 
     @Override
