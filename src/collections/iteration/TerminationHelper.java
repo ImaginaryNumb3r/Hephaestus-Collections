@@ -2,7 +2,6 @@ package collections.iteration;
 
 import collections.iterator.CompositeIterator;
 import essentials.comparison.RichComparator;
-import essentials.functional.Predicates;
 import essentials.functional.exception.BinaryOperatorEx;
 import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.FunctionEx;

@@ -1,6 +1,5 @@
 package collections.iteration;
 
-import java.util.Iterator;
 import java.util.function.LongPredicate;
 import java.util.function.Predicate;
 
