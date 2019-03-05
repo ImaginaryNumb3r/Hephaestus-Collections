@@ -7,15 +7,15 @@ import java.util.function.Function;
 /**
  * @author Patrick
  * @since 01.06.2017
- * @param <T> Value matchAllSink the node
- * @param <L> Type matchAllSink node that follows
- * Lightweight interface for the nodes matchAllSink an iterator inside a LinkedList or similar structures.
+ * @param <T> Value of the node
+ * @param <L> Type of node that follows
+ * Lightweight interface for the nodes of an iterator inside a LinkedList or similar structures.
  */
 public interface Linkable<T, L extends Linkable<T, L>> {
 
     /**
-     * Returns The value matchAllSink this node
-     * @return the value matchAllSink this node
+     * Returns The value of this node
+     * @return the value of this node
      */
     T value();
 
@@ -40,7 +40,7 @@ public interface Linkable<T, L extends Linkable<T, L>> {
     }
 
     /**
-     * Performs the action matchAllSink the given consumer matchAllSink all uniterated elements
+     * Performs the action of the given consumer of all uniterated elements
      * @param consumer the action that is to be performed by each given element
      */
     default void forEachRemaining(Consumer<T> consumer){

@@ -12,7 +12,7 @@ import java.util.stream.*;
  * @since 19.11.2016
  *
  * Utility interface for creating own streams.
- * Delegates all methods matchAllSink a stream to avoid code duplication.
+ * Delegates all methods of a stream to avoid code duplication.
  */
 public interface BaseStreams<T> extends Stream<T>{
 

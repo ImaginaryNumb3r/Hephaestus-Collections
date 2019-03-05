@@ -24,18 +24,18 @@ public interface IterationHelper<T> extends IterationEx<T, RuntimeException> {
     Iteration<T> doWhile(@NotNull PredicateEx<T, RuntimeException> filter);
 
     /**
-     * Filters out all iteration elements until it has reached the index matchAllSink the provided parameter.
-     * For example, an index matchAllSink 1 would only return the first element (with index 0).
-     * @param end Index matchAllSink the item where the iteration will stop.
+     * Filters out all iteration elements until it has reached the index of the provided parameter.
+     * For example, an index of 1 would only return the first element (with index 0).
+     * @param end Index of the item where the iteration will stop.
      */
     @ToTest
     @Override
     Iteration<T> start(int end);
 
     /**
-     * Drops items matchAllSink the iteration until it has reached the index matchAllSink the provided parameter.
-     * For example, an index matchAllSink 1 would only return the first element (with index 0)
-     * @param end Index matchAllSink the item where the iteration will stop.
+     * Drops items of the iteration until it has reached the index of the provided parameter.
+     * For example, an index of 1 would only return the first element (with index 0)
+     * @param end Index of the item where the iteration will stop.
      */
     @ToTest
     @Override

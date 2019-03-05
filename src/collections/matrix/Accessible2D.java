@@ -17,9 +17,9 @@ public interface Accessible2D<T> extends BiFunction<Integer, Integer, T>{
 
     /**
      * Deprecated since this method allows nullable parameters, use getAt instead.
-     * This method is only to be called as a instance matchAllSink BiFunction.
-     * @param x horizontal index matchAllSink the value inside the object
-     * @param y vertical index matchAllSink the value inside the object
+     * This method is only to be called as a instance of BiFunction.
+     * @param x horizontal index of the value inside the object
+     * @param y vertical index of the value inside the object
      * @throws IndexOutOfBoundsException if no element at the given index exists
      * @throws NullPointerException if either parameter is null
      * @return the given value at the specified location
@@ -32,7 +32,7 @@ public interface Accessible2D<T> extends BiFunction<Integer, Integer, T>{
 
     /**
      * Returns the given value at the specified location
-     * @param tuple matchAllSink coordinates serving as index matchAllSink the value inside the object
+     * @param tuple of coordinates serving as index of the value inside the object
      * @throws IndexOutOfBoundsException if no element at the given index exists
      * @throws NullPointerException if either parameter is null
      * @return the given value at the specified location
@@ -44,8 +44,8 @@ public interface Accessible2D<T> extends BiFunction<Integer, Integer, T>{
 
     /**
      * Returns the given value at the specified location
-     * @param x horizontal index matchAllSink the value inside the object
-     * @param y vertical index matchAllSink the value inside the object
+     * @param x horizontal index of the value inside the object
+     * @param y vertical index of the value inside the object
      * @throws IndexOutOfBoundsException if no element at the given index exists
      * @throws NullPointerException if either parameter is null
      * @return the given value at the specified location

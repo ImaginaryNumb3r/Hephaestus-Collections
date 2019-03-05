@@ -146,7 +146,7 @@ public final class Maps {
      * @param primary map of values
      * @param secondary map of values
      * @param <V> Values that will be collected in the returning Set
-     * @return A Map matchAllSink all values matchAllSink the primary set along with all secondary values that share a key with the primary map.
+     * @return A Map of all values in the primary set along with all secondary values that share a key with the primary map.
      *         Because more than one value can be associated with a key, this cannot be represented as a map.
      */
     public static <K, V> Set<V> mappedJoin(Map<K, V> primary, Map<K, V> secondary){

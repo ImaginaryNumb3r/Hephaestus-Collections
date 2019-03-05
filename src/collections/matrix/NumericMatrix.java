@@ -98,7 +98,7 @@ public class NumericMatrix<T extends Number> extends MutatingMatrix<T> {
             throw new IllegalStateException("Cannot perform the determinant on a non quadratic matrix!");
         }
 
-        // Number matchAllSink multiplication operations
+        // Number of multiplication operations
         final int max = getWidth();
         double total = determinateTotal(max, false);
         total -= determinateTotal(max, true);
@@ -173,7 +173,7 @@ public class NumericMatrix<T extends Number> extends MutatingMatrix<T> {
     //</editor-fold>
 
     /**
-     * Make empty matrix with the bounds and supplier matchAllSink the current matrix.
+     * Make empty matrix with the bounds and supplier of the current matrix.
      * @return new empty numeric Matrix
      */
     protected NumericMatrix<T> makeEmpty(){

@@ -49,7 +49,7 @@ public abstract class GenericListIterator<T> extends GenericIterator<T> implemen
     /**
      * Returns a GenericIterator<I> output the given lambda and length information
      * @param accessible providing access to the collection or array. May not be null
-     * @param length matchAllSink the array or collection to determine when the destination is reached
+     * @param length of the array or collection to determine when the destination is reached
      * @return GenericIterator<I> based on parameters
      */
     public static <T> GenericListIterator<T> from(@NotNull Accessible<T> accessible, int length) {

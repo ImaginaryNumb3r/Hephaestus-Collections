@@ -11,8 +11,8 @@ import java.util.function.BiFunction;
  * @author Patrick
  * @since 14.01.2018
  * A Computation contains the stateless part methods an Iteration {@see stream.iteration.Iteration}
- * that does not change the state matchAllSink the aggregated iterator. In other words, no new Iterator is created.
- * @param <T> The output matchAllSink the computation.
+ * that does not change the state of the aggregated iterator. In other words, no new Iterator is created.
+ * @param <T> The output of the computation.
  *              Note that the Computation has no "in" type parameter because that will be user defined behaviour.
  */
 interface Computation<T, X extends Exception> {
@@ -29,17 +29,17 @@ interface Computation<T, X extends Exception> {
     IterationEx<T, X> doWhile(@NotNull IterationPredicate<T, X> filter) throws X;
 
     /**
-     * Filters out all iteration elements until it has reached the index matchAllSink the provided parameter.
-     * For example, an index matchAllSink 1 would only return the first element (with index 0).
-     * @param start Index matchAllSink the item where the iteration will stop.
+     * Filters out all iteration elements until it has reached the index of the provided parameter.
+     * For example, an index of 1 would only return the first element (with index 0).
+     * @param start Index of the item where the iteration will stop.
      */
     @ToTest
     IterationEx<T, X> start(int start);
 
     /**
-     * Drops items matchAllSink the iteration until it has reached the index matchAllSink the provided parameter.
-     * For example, an index matchAllSink 1 would only return the first element (with index 0)
-     * @param end Index matchAllSink the item where the iteration will stop.
+     * Drops items of the iteration until it has reached the index of the provided parameter.
+     * For example, an index of 1 would only return the first element (with index 0)
+     * @param end Index of the item where the iteration will stop.
      */
     @ToTest
     IterationEx<T, X> limit(int end);

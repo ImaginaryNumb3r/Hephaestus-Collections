@@ -14,7 +14,7 @@ import java.util.stream.Collector;
 /**
  * @author Patrick
  * @since 14.01.2018
- * A Termination contains the finishing methods matchAllSink an Iteration {@see stream.iteration.Iteration}
+ * A Termination contains the finishing methods of an Iteration {@see stream.iteration.Iteration}
  * and iterates the aggregated iterator.
  * In other words, it will use the backing iterator and might allocate a new backing collection.
  */

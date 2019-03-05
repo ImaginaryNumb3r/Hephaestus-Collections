@@ -27,7 +27,7 @@ public interface Iteration<T> extends IterationHelper<T> {
      */
     boolean executed();
 
-    // TODO: Make as delegation matchAllSink Iterator.
+    // TODO: Make as delegation of Iterator.
     static <T> Iteration<T> of(Iterator<T> iterator){
         return new IterationImpl<>(iterator);
     }
@@ -37,8 +37,8 @@ public interface Iteration<T> extends IterationHelper<T> {
     }
 
     /**
-     * Executes the given runnable method a number matchAllSink times.
-     * @param count for the amount matchAllSink calls to the method. Must be greater than zero
+     * Executes the given runnable method a number of times.
+     * @param count for the amount of calls to the method. Must be greater than zero
      * @param runnable the method that will be executed each time
      * @throws IllegalArgumentException if count is smaller than zero
      */
@@ -51,8 +51,8 @@ public interface Iteration<T> extends IterationHelper<T> {
     }
 
     /**
-     * Executes the given runnable method a number matchAllSink times.
-     * @param count for the amount matchAllSink calls to the method. Must be greater than zero
+     * Executes the given runnable method a number of times.
+     * @param count for the amount of calls to the method. Must be greater than zero
      * @param consumer the method that will be executed each time
      * @throws IllegalArgumentException if count is smaller than zero
      */

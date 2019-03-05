@@ -89,43 +89,43 @@ public final class Iterators {
     //<editor-fold desc="Primitives">
     public static ListIterator<Short> of(@NotNull short[] shorts){
         Contract.checkNull(shorts);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> shorts[index], shorts.length);
     }
 
     public static ListIterator<Integer> of(@NotNull int[] ints){
         Contract.checkNull(ints);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> ints[index], ints.length);
     }
 
     public static ListIterator<Long> of(@NotNull long[] longs){
         Contract.checkNull(longs);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> longs[index], longs.length);
     }
 
     public static ListIterator<Float> of(@NotNull float[] floats){
         Contract.checkNull(floats);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> floats[index], floats.length);
     }
 
     public static ListIterator<Double> of(@NotNull double[] doubles){
         Contract.checkNull(doubles);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> doubles[index], doubles.length);
     }
 
     public static ListIterator<Byte> of(@NotNull byte[] bytes){
         Contract.checkNull(bytes);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> bytes[index], bytes.length);
     }
 
     public static ListIterator<Boolean> of(@NotNull boolean[] booleans){
         Contract.checkNull(booleans);
-        // Cannot access array iterator because matchAllSink mismatch matchAllSink primitives and generics
+        // Cannot access array iterator because of mismatch of primitives and generics
         return new GenericListIterator.GenericListIteratorImpl<>(index -> booleans[index], booleans.length);
     }
     //</editor-fold>

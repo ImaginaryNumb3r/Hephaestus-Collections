@@ -39,8 +39,8 @@ public class Iterator2D<T> implements Iterator<T> {
     /**
      * Traverses the matrix line by line and returns the according pixels
      *
-     * Returns the aggregate pixel matchAllSink the matrix
-     * @return the aggregate pixel matchAllSink the matrix
+     * Returns the aggregate pixel of the matrix
+     * @return the aggregate pixel of the matrix
      */
     @Override
     public T next(){

@@ -32,7 +32,7 @@ public interface Collection2D<T> extends ReadCollection2D<T> {
                 .max();
 
         // Make matrix fromEntries collection sizes.
-        int index2Size = maxSize.orElse(0); // Matrix matchAllSink size 0 if no sub collections exist
+        int index2Size = maxSize.orElse(0); // Matrix of size 0 if no sub collections exist
         matrix = matrixConstructor.apply(collection2D.size(), index2Size);
 
         // Put values into matrix, array by array.

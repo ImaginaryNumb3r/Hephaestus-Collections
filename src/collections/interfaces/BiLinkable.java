@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
  * @author Patrick
  * @since 01.06.2017
  *
- * Interface for bidirectional nodes inside matchAllSink a ListIterator
+ * Interface for bidirectional nodes inside of a ListIterator
  */
 public interface BiLinkable<T> extends Linkable<T, BiLinkable<T>> {
 

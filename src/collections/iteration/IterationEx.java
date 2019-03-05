@@ -12,12 +12,12 @@ import java.util.ListIterator;
  */
 public interface IterationEx<T, X extends Exception> extends Computation<T, X>, Termination<T, X>  {
 
-    // TODO: Make as delegation matchAllSink Iterator.
+    // TODO: Make as delegation of Iterator.
     static <T, X extends Exception> IterationEx<T, X> of(IteratorEx<T, X> iterator){
         return new IterationExImpl<>(iterator);
     }
 
-    // TODO: Make as delegation matchAllSink Iterator.
+    // TODO: Make as delegation of Iterator.
     static <T, X extends Exception> IterationEx<T, X> of(Iterator<T> iterator){
         return new IterationExImpl<>(iterator);
     }

@@ -18,7 +18,7 @@ public interface Accessible<T> extends IntFunction<T> {
 
     /**
      * Returns the given value at the specified location
-     * @param index matchAllSink the value inside the object
+     * @param index of the value inside the object
      * @throws IndexOutOfBoundsException if no element at the given index exists
      * @return the given value at the specified location
      */

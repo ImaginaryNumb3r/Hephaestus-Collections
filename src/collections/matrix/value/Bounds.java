@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * @author Patrick
  * @since 21.05.2017
  *
- * Saves the height and width matchAllSink a 2D collection.
+ * Saves the height and width of a 2D collection.
  * Value class that only contains non-nullable values.
  */
 public class Bounds implements Tuple<Integer, Integer> {
