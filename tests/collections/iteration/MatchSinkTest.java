@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.util.Objects;
 
+import static org.junit.Assert.assertTrue;
+
 /**
  * @author Patrick
  * @since 19.01.2018
@@ -16,11 +18,11 @@ public class MatchSinkTest {
 
         boolean allMatch = Iteration.of(negatives)
                 .allMatch(val -> val < 0);
-        assert allMatch;
+        assertTrue(allMatch);
 
         boolean noneMatch = Iteration.of(negatives)
                 .allMatch(val -> val >= 0);
-        assert !noneMatch;
+        assertTrue(!noneMatch);
     }
 
     @Test
@@ -29,11 +31,11 @@ public class MatchSinkTest {
 
         boolean allMatch = Iteration.of(negatives)
                 .noneMatch(val -> val < 0);
-        assert !allMatch;
+        assertTrue(!allMatch);
 
         boolean noneMatch = Iteration.of(negatives)
                 .noneMatch(val -> val >= 0);
-        assert noneMatch;
+        assertTrue(noneMatch);
     }
 
     @Test
@@ -42,6 +44,6 @@ public class MatchSinkTest {
 
         boolean anyMatch = Iteration.of(negatives)
                 .anyMatch(Objects::isNull);
-        assert anyMatch;
+        assertTrue(anyMatch);
     }
 }
