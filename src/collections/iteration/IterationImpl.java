@@ -1,6 +1,7 @@
 package collections.iteration;
 
 import essentials.contract.Contract;
+import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.PredicateEx;
 import org.jetbrains.annotations.NotNull;
 
@@ -8,6 +9,8 @@ import java.util.Iterator;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.LongPredicate;
+
+import static essentials.contract.Contract.checkNull;
 
 /**
  * Creator: Patrick

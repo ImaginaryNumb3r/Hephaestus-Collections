@@ -7,6 +7,8 @@ import org.junit.Test;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * @author Patrick
  * @since 15.01.2018
@@ -24,7 +26,7 @@ public class MappingOpsTest {
                 .map(Object::toString)
                 .collect(Collectors.toList());
 
-        assert Objects.equals(strings, mappedList);
+        assertEquals(strings, mappedList);
     }
 
     @Test
@@ -39,6 +41,6 @@ public class MappingOpsTest {
                 .collect(Collectors.toList());
 
         ArrayList<Integer> expectedIndices = Lists.toArrayList(indices);
-        assert Objects.equals(expectedIndices, indexList);
+        assertEquals(expectedIndices, indexList);
     }
 }

@@ -2,6 +2,8 @@ package collections.iteration;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 
 /**
  * @author Patrick
@@ -18,7 +20,7 @@ public class WhileOpsTest {
         IterationEx<Boolean, RuntimeException> whileFilter = primary.doWhile(item -> item);
 
         long count = whileFilter.count();
-        assert count == expectedCount;
+        assertEquals(expectedCount, count);
     }
 
     @Test
@@ -30,6 +32,6 @@ public class WhileOpsTest {
         Iteration<Boolean> whileFilter = primary.doWhile(item -> item);
 
         long count = whileFilter.count();
-        assert count == expectedCount;
+        assertEquals(expectedCount, count);
     }
 }
