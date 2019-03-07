@@ -1,7 +1,6 @@
 package collections.iteration;
 
 import essentials.contract.Contract;
-import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.FunctionEx;
 import essentials.functional.exception.PredicateEx;
 import org.jetbrains.annotations.NotNull;
@@ -16,10 +15,11 @@ import static essentials.contract.Contract.checkNull;
  * Created: 16.05.2018
  * Purpose:
  */
-interface ComputationHelper<T, X extends Exception> extends Computation<T, X> {
+/*package*/ interface ComputationHelper<T, X extends Exception> extends Computation<T, X> {
 
     /**
-     * The source of the iteration. It can also be used directly to
+     * The source of the iteration.
+     * Note that this is only a part of the helper interface, not part of the Iteration interface itself.
      * @return the backing iterator behind the iteration.
      */
     IteratorEx<T, X> source();

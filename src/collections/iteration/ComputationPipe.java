@@ -63,6 +63,7 @@ abstract class ComputationPipe<in, out, X extends Exception> implements Iterator
 
     @Override
     public boolean hasNext() {
+        // Next can be null, therefore we also need to check hasNext().
         return _next != null || _source.hasNext();
     }
 

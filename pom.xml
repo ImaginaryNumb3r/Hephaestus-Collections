@@ -45,7 +45,7 @@
         <dependency>
             <groupId>com.github.ImaginaryNumb3r</groupId>
             <artifactId>Hephaestus-essentials</artifactId>
-            <version>1.0.1</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

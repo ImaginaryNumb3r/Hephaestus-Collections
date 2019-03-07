@@ -1,9 +1,9 @@
 package collections.matrix;
 
+import collections.interfaces.ArrayConstructor;
+import collections.interfaces.MatrixConstructor;
 import collections.matrix.value.Bounds;
 import essentials.contract.Contract;
-import essentials.functional.ArrayConstructor;
-import essentials.functional.MatrixConstructor;
 import essentials.tuple.Tuple;
 import org.jetbrains.annotations.NotNull;
 

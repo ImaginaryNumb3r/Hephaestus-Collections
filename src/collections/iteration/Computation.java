@@ -1,7 +1,6 @@
 package collections.iteration;
 
 import essentials.annotations.ToTest;
-import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.FunctionEx;
 import essentials.functional.exception.PredicateEx;
 import org.jetbrains.annotations.NotNull;
@@ -16,7 +15,7 @@ import java.util.function.BiFunction;
  * @param <T> The output of the computation.
  *              Note that the Computation has no "in" type parameter because that will be user defined behaviour.
  */
-interface Computation<T, X extends Exception> {
+interface Computation<T, X extends Exception> extends IteratorEx<T, X> {
 
     <R> IterationEx<R, X> map(@NotNull FunctionEx<T, R, X> mapper) throws X;
 
@@ -49,4 +48,8 @@ interface Computation<T, X extends Exception> {
 
     @ToTest
     IterationEx<T, X> filter(@NotNull IterationPredicate<T, X> predicate) throws X;
+
+    @ToTest
+    T peek() throws X;
+
 }

@@ -1,12 +1,12 @@
 package collections.iterator;
 
+import collections.interfaces.ArrayConstructor;
 import collections.interfaces.LinkableImpl;
 import essentials.annotations.ToTest;
 import essentials.collections.ArrayListIterator;
 import essentials.contract.Contract;
 import essentials.contract.InstanceNotAllowedException;
 import essentials.contract.ParameterNullException;
-import essentials.functional.ArrayConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
