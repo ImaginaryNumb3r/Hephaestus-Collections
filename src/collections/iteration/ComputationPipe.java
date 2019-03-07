@@ -25,7 +25,7 @@ abstract class ComputationPipe<in, out, X extends Exception> implements Iterator
     private static final int CURSOR_START = -1;
     protected final IteratorEx<in, X> _source;
     protected int _cursorPos; // The index of the element in the backing iteration.
-    private out _next;
+    protected out _next;
 
     public ComputationPipe(IteratorEx<in, X> source) {
         _source = source;
@@ -50,7 +50,14 @@ abstract class ComputationPipe<in, out, X extends Exception> implements Iterator
         return compute(input);
     }
 
-    protected abstract out compute(in item);
+    /**
+     * Performs a computation on the given item.
+     * For filtering operations, this is just the identity function.
+     * @param item generic input item.
+     * @return A transformation to the generic output type.
+     * @throws X potential exception that can occur. This is then forwarded in the #output method.
+     */
+    protected abstract out compute(in item) throws X;
 
     protected abstract boolean test(in item) throws X;
 
@@ -60,7 +67,7 @@ abstract class ComputationPipe<in, out, X extends Exception> implements Iterator
     }
 
     @Override
-    public out next() throws X{
+    public out next() throws X {
         if (_cursorPos == CURSOR_START){
             _next = output();
         }

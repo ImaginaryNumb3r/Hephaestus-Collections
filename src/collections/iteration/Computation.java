@@ -1,6 +1,7 @@
 package collections.iteration;
 
 import essentials.annotations.ToTest;
+import essentials.functional.exception.ConsumerEx;
 import essentials.functional.exception.FunctionEx;
 import essentials.functional.exception.PredicateEx;
 import org.jetbrains.annotations.NotNull;
@@ -10,8 +11,8 @@ import java.util.function.BiFunction;
 /**
  * @author Patrick
  * @since 14.01.2018
- * A Computation contains the stateless part methods an Iteration {@see stream.iteration.Iteration}
- * that does not change the state of the aggregated iterator. In other words, no new Iterator is created.
+ * A Computation contains the stateless part methods of an Iteration {@see stream.iteration.Iteration}.
+ * Computations do not change the state of the aggregated iterator. In other words, no new Iterator is created.
  * @param <T> The output of the computation.
  *              Note that the Computation has no "in" type parameter because that will be user defined behaviour.
  */
@@ -21,7 +22,6 @@ interface Computation<T, X extends Exception> {
 
     @ToTest
     <R> IterationEx<R, X> mapIndices(@NotNull BiFunction<T, Integer, R> mapper) throws X;
-    // "while" is a reserved keyword
 
     IterationEx<T, X> doWhile(@NotNull PredicateEx<T, X> filter) throws X;
 
