@@ -2,6 +2,9 @@ package collections.iteration;
 
 import collections.iterator.Iterators;
 import essentials.annotations.Positive;
+import essentials.contract.Contract;
+import essentials.contract.ParameterNullException;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.function.IntConsumer;
@@ -22,18 +25,37 @@ import java.util.function.IntConsumer;
 public interface Iteration<T> extends IterationHelper<T> {
 
     /**
-     * Returns true if the Iteration can be executed. Otherwise an {@code IllegalStateException} will be thrown.
+     * Returns true if the Iteration can be executed.
+     * Otherwise a {@code IllegalStateException} will be thrown if an iteration is executed multiple times.
      * @return true if the Iteration has been used previously. Otherwise false.
      */
     boolean executed();
 
     // TODO: Make as delegation of Iterator.
-    static <T> Iteration<T> of(Iterator<T> iterator){
+    static <T> Iteration<T> of(@NotNull Iterator<T> iterator){
+        Contract.checkNull(iterator, "iterator");
+
         return new IterationImpl<>(iterator);
     }
 
-    static <T> Iteration<T> of(T[] objects){
+    static <T> Iteration<T> of(@NotNull T[] objects){
+        Contract.checkNull(objects, "objects");
+
         return new IterationImpl<>(Iterators.of(objects));
+    }
+
+    static <T> Iteration<T> ofNullable(Iterator<T> iterator){
+        if (iterator == null){
+            iterator = Iterators.empty();
+        }
+
+        return new IterationImpl<>(iterator);
+    }
+
+    static <T> Iteration<T> ofNullable(T[] objects){
+        return objects != null
+            ? Iteration.of(objects)
+            : Iteration.of(Iterators.empty());
     }
 
     /**
@@ -42,7 +64,7 @@ public interface Iteration<T> extends IterationHelper<T> {
      * @param runnable the method that will be executed each time
      * @throws IllegalArgumentException if count is smaller than zero
      */
-    static void repeat(@Positive int count, Runnable runnable){
+    static void repeat(@Positive int count, @NotNull Runnable runnable){
         if (count < 0) throw new IllegalArgumentException("Argument \"count\" must not be smaller than zero");
 
         for (int i= 0; i < count; ++i){
@@ -56,7 +78,7 @@ public interface Iteration<T> extends IterationHelper<T> {
      * @param consumer the method that will be executed each time
      * @throws IllegalArgumentException if count is smaller than zero
      */
-    static void repeat(@Positive int count, IntConsumer consumer){
+    static void repeat(@Positive int count, @NotNull IntConsumer consumer){
         if (count < 0) throw new IllegalArgumentException("Argument \"count\" must not be smaller than zero");
 
         for (int i = 0; i < count; ++i){

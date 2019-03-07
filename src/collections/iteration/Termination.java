@@ -8,7 +8,7 @@ import essentials.functional.exception.PredicateEx;
 
 import java.util.Comparator;
 import java.util.Optional;
-import java.util.function.*;
+import java.util.function.Supplier;
 import java.util.stream.Collector;
 
 /**
