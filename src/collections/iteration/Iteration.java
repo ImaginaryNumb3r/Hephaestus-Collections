@@ -3,7 +3,6 @@ package collections.iteration;
 import collections.iterator.Iterators;
 import essentials.annotations.Positive;
 import essentials.contract.Contract;
-import essentials.contract.ParameterNullException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;

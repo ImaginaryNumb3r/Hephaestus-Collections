@@ -1,13 +1,9 @@
 package collections.iteration;
 
 import collections.iterator.Iterators;
-import essentials.functional.exception.ConsumerEx;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Iterator;
 import java.util.ListIterator;
-
-import static essentials.contract.Contract.checkNull;
 
 /**
  * Creator: Patrick

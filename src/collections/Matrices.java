@@ -1,9 +1,9 @@
 package collections;
 
+import collections.interfaces.ArrayConstructor;
+import collections.interfaces.MatrixConstructor;
 import collections.matrix.MatrixCellConsumer;
 import collections.matrix.MatrixCellSupplier;
-import essentials.functional.ArrayConstructor;
-import essentials.functional.MatrixConstructor;
 import essentials.functional.TriFunction;
 
 import java.util.function.BinaryOperator;

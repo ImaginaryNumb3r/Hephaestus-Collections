@@ -1,19 +1,18 @@
 package collections.iteration;
 
-import essentials.functional.exception.ConsumerEx;
-import org.jetbrains.annotations.NotNull;
+import essentials.collections.PeekIterator;
+import essentials.contract.NoImplementationException;
 
 import java.util.Iterator;
-
-import static essentials.contract.Contract.checkNull;
 
 /**
  * @author Patrick
  * @since 14.01.2018
  */
-class IterationExImpl<T, X extends Exception> implements ComputationHelper<T, X>, TerminationHelper<T, X>, IterationEx<T, X> {
+/*package*/ class IterationExImpl<T, X extends Exception> implements ComputationHelper<T, X>, TerminationHelper<T, X>, IterationEx<T, X> {
     private final IteratorEx<T, X> _source;
     protected int _index; // = 0;
+    private PeekIterator<T> _peeker;
 
     public IterationExImpl(IteratorEx<T, X> source) {
         _source = source;
@@ -41,5 +40,20 @@ class IterationExImpl<T, X extends Exception> implements ComputationHelper<T, X>
     @Override
     public boolean executed() {
         return !_source.hasNext();
+    }
+
+    @Override
+    public T peek() throws X {
+        throw new NoImplementationException();
+    }
+
+    @Override
+    public boolean hasNext() {
+        return false;
+    }
+
+    @Override
+    public T next() throws X {
+        return null;
     }
 }
