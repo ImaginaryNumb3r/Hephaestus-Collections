@@ -1,5 +1,6 @@
 package collections.matrix;
 
+import collections.Matrices;
 import collections.iterator.Iterables;
 import collections.iterator.Iterators;
 import collections.matrix.value.Bounds;
@@ -262,25 +263,7 @@ public class MutatingMatrix<T> implements Matrix<T>, Collection2D<T> {
     }
 
     public String toString(Function<T, String> mapper) {
-        StringBuilder builder = new StringBuilder();
-
-        ListIterator<T[]> iterator = iterateLines();
-        for (T[] line : Iterables.of(iterator)) {
-            builder.append("[ ");
-
-            for (T value : line) {
-                builder.append(mapper.apply(value)).append(" ");
-            }
-
-            builder.append("]");
-
-            // Make line breaks between each line
-            if (iterator.hasNext()){
-                builder.append("\n");
-            }
-        }
-
-        return builder.toString();
+        return Matrices.toString(_matrix, mapper);
     }
 
     @Override
@@ -293,10 +276,7 @@ public class MutatingMatrix<T> implements Matrix<T>, Collection2D<T> {
 
     //<editor-fold desc="Iteration">
     public ListIterator<T[]> iterateLines(){
-        ArrayList<T[]> list = new ArrayList<>(_matrix.length);
-        list.addAll(Arrays.asList(_matrix));
-
-        return list.listIterator();
+        return Matrices.iterateLines(_matrix);
     }
 
 

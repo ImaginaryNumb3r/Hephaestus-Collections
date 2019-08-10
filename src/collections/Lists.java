@@ -1,13 +1,13 @@
 package collections;
 
+import collections.iteration.LinearCollector;
 import essentials.annotations.ToTest;
 import essentials.collections.ArrayIterator;
 import essentials.contract.InstanceNotAllowedException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 
 /**
@@ -73,7 +73,7 @@ public final class Lists {
         return list;
     }
 
-    public static <T> T[] toArray(Collection<T> collection, Function<Integer, T[]> arrayConstructor) {
+    public static <T> T[] toArray(Collection<T> collection, IntFunction<T[]> arrayConstructor) {
         T[] array = arrayConstructor.apply(collection.size());
 
         int i = 0;
@@ -86,13 +86,35 @@ public final class Lists {
     //</editor-fold>
 
     //<editor-fold desc="Construction">
-    public static <T> List<T> toList(@NotNull Iterable<T> iterable){
+    public static <T> List<T> of(@NotNull Iterable<T> iterable){
         return toArrayList(iterable);
     }
 
-    public static <T> List<T> toList(@NotNull Iterator<T> iterator){
+    public static <T> List<T> of(@NotNull Iterator<T> iterator){
         return toArrayList(() -> iterator);
     }
-    
+
     //</editor-fold>
+
+    public static <T, R extends List<T>> LinearCollector<T, R> receive(R receiver) {
+        return new LinearCollector<>() {
+            @Override
+            public Supplier<R> supplier() {
+                return () -> receiver;
+            }
+
+            @Override
+            public BiConsumer<R, T> accumulator() {
+                return List::add;
+            }
+
+            @Override
+            public BinaryOperator<R> combiner() {
+                return (left, right) -> {
+                    left.addAll(right);
+                    return left;
+                };
+            }
+        };
+    }
 }
