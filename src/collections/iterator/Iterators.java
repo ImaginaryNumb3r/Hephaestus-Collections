@@ -45,7 +45,7 @@ public final class Iterators {
             list.add(element);
         }
 
-        return list.toArray(constructor.make(list.size()));
+        return list.toArray(constructor.apply(list.size()));
     }
 
     //</editor-fold>

@@ -2,10 +2,14 @@ package collections;
 
 import collections.interfaces.ArrayConstructor;
 import collections.interfaces.MatrixConstructor;
+import collections.iterator.Iterables;
 import collections.matrix.MatrixCellConsumer;
 import collections.matrix.MatrixCellSupplier;
 import essentials.functional.TriFunction;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ListIterator;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -15,7 +19,7 @@ import java.util.stream.Stream;
 /**
  * @author Patrick
  * @since 07.01.2018
- * @noinspection WeakerAccess
+ * @noinspection WeakerAccess, Duplicates
  */
 public final class Matrices {
 
@@ -28,7 +32,7 @@ public final class Matrices {
      * @throws ArrayIndexOutOfBoundsException if index is out of bounds
      */
     public static <T> T[] getHorizontalLine(T[][] matrix, int index, ArrayConstructor<T> arrayConstructor){
-        T[] line = arrayConstructor.make(matrix.length);
+        T[] line = arrayConstructor.apply(matrix.length);
 
         for (int i = 0; i != matrix.length; ++i){
             line[i] = matrix[index][i];
@@ -142,8 +146,8 @@ public final class Matrices {
 
     public static <T> Stream<T> stream(T[][] matrix){
         return Stream.of(matrix)
-                .flatMap(Stream::of)
-                .flatMap(Stream::of);
+            .flatMap(Stream::of)
+            .flatMap(Stream::of);
     }
 
     public static <T> void foreachLine(T[][] matrix, Consumer<T[]> consumer){
@@ -156,7 +160,70 @@ public final class Matrices {
         int size = matrix.length;
 
         return size != 0
-                ? size * matrix[0].length
-                : size;
+            ? size * matrix[0].length
+            : size;
+    }
+
+    public static <T> ListIterator<T[]> iterateLines(T[][] matrix){
+        ArrayList<T[]> list = new ArrayList<>(matrix.length);
+        list.addAll(Arrays.asList(matrix));
+
+        return list.listIterator();
+    }
+
+    public static Character[][] box(char[][] matrix) {
+        int width = matrix.length;
+        if (width == 0) return new Character[0][0];
+
+        int height = matrix[0].length;
+        Character[][] box = new Character[width][height];
+        for (int w = 0; w != width; ++w) {
+            for (int h = 0; h != height; ++h) {
+                box[w][h] = matrix[w][h];
+            }
+        }
+
+        return box;
+    }
+
+    public static Integer[][] box(int[][] matrix) {
+        int width = matrix.length;
+        if (width == 0) return new Integer[0][0];
+
+        int height = matrix[0].length;
+        Integer[][] box = new Integer[width][height];
+        for (int w = 0; w != width; ++w) {
+            for (int h = 0; h != height; ++h) {
+                box[w][h] = matrix[w][h];
+            }
+        }
+
+        return box;
+    }
+
+    public static <T> String toString(T[][] matrix) {
+        return toString(matrix, Object::toString);
+    }
+
+    public static <T> String toString(T[][] matrix, Function<T, String> mapper) {
+        StringBuilder builder = new StringBuilder();
+
+        ListIterator<T[]> iterator = iterateLines(matrix);
+        for (T[] line : Iterables.of(iterator)) {
+            builder.append("[ ");
+
+            for (T value : line) {
+                builder.append(mapper.apply(value)).append(" ");
+            }
+
+            builder.append("]");
+
+            // Make line breaks between each line
+            if (iterator.hasNext()){
+                builder.append("\n");
+            }
+        }
+
+        return builder.toString();
     }
 }

@@ -38,7 +38,7 @@ public interface Collection2D<T> extends ReadCollection2D<T> {
         // Put values into matrix, array by array.
         int i = 0;
         for (C collection : collection2D) {
-            T[] array = arrayConstructor.make(collection.size());
+            T[] array = arrayConstructor.apply(collection.size());
 
             int j = 0;
             for (T item : collection) {

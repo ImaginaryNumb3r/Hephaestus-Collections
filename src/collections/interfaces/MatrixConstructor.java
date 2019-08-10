@@ -8,7 +8,6 @@ import java.util.function.BiFunction;
  * Purpose:
  */
 @FunctionalInterface
-// TODO: Move to Collection Framework
 public interface MatrixConstructor<T> extends BiFunction<Integer, Integer, T[][]>{
 
     T[][] apply(int width, int height);
