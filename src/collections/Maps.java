@@ -104,7 +104,6 @@ public final class Maps {
     }
     //</editor-fold>
 
-
     //<editor-fold desc="Map Entries">
     public static <K, V, T extends Map.Entry<K, V>> HashMap<K, V> fromEntries(@NotNull Iterable<T> iterable){
         return fromEntries(iterable, 16 /* Default load factor */);
@@ -173,6 +172,39 @@ public final class Maps {
     }
     //</editor-fold>
 
+    //<editor-fold desc="Map Oriented Joins">
+
+
+    public static <K, V> Map<K, V> leftJoin(Map<K, V> primary, Map<K, V> secondary) {
+        Map<K, V> joined = new HashMap<>(secondary);
+        joined.putAll(primary);
+
+        return joined;
+    }
+
+    public static <K, V> Map<K, V> join(Map<K, V> left, Map<K, V> right, BinaryOperator<V> resolver) {
+        Map<K, V> joined = new HashMap<>(right);
+        for (Map.Entry<K, V> entry : left.entrySet()) {
+            K key = entry.getKey();
+            V value = entry.getValue();
+
+            V prev = joined.put(key, value);
+            if (prev != null) {
+                value = resolver.apply(value, prev);
+                joined.put(key, value);
+            }
+        }
+
+        return joined;
+    }
+
+    public static <K, V> Map<K, V> join(Map<K, V> primary, Map<K, V> secondary){
+        HashMap<K, V> joined = new HashMap<>(secondary);
+        joined.putAll(primary);
+
+        return joined;
+    }
+
     public static <K, V> Map<K, V> mappedOuterJoin(Map<K, V> primary, Map<K, V> secondary){
         HashMap<K, V> disjoint = new HashMap<>();
         customJoin(primary, secondary, value -> !primary.containsKey(value), disjoint::put);
@@ -240,6 +272,7 @@ public final class Maps {
     public static <K, V> Map<K, V> outerJoinAll(Iterable<Map<K, V>> maps){
         throw new NoImplementationException();
     }
+    //</editor-fold>
 
     /**
      * Custom join of two maps.
