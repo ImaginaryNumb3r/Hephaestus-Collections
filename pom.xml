@@ -4,7 +4,7 @@
 
     <groupId>com.github.ImaginaryNumb3r</groupId>
     <artifactId>hephaestus-collections</artifactId>
-    <version>1.0.3</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <description>TODO</description>
     <name>${project.groupId}:${project.artifactId}:${project.version}</name>
@@ -16,36 +16,27 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
-    <!--
-        <repositories>
-            <repository>
-                <id>central</id>
-                <name>Central Repository</name>
-                <url>http://repo.maven.apache.org/maven2</url>
-                <layout>default</layout>
-                <snapshots>
-                    <enabled>false</enabled>
-                </snapshots>
-            </repository>
-        </repositories> -->
-
     <repositories>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
+        <repository>
+            <id>central</id>
+            <name>Central Repository</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>15.0</version>
-        </dependency>
-        <dependency>
             <groupId>com.github.ImaginaryNumb3r</groupId>
-            <artifactId>Hephaestus-essentials</artifactId>
-            <version>1.1</version>
+            <artifactId>Hephaestus-Essentials</artifactId>
+            <version>1.1.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -98,14 +89,9 @@
         <url>https://github.com/ImaginaryNumb3r/Hephaestus</url>
     </scm>
 
-
     <developers>
         <developer>
             <name>Patrick Plieschnegger</name>
-            <email>patrick.plieschnegger@gmail.com</email>
-            <organization>None</organization>
-            <organizationUrl>http://www.none.com</organizationUrl>
         </developer>
     </developers>
-
 </project>
