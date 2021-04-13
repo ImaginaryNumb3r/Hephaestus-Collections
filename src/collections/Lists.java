@@ -73,6 +73,10 @@ public final class Lists {
         return list;
     }
 
+    /**
+     * @deprecated Use {@link Collection#toArray(IntFunction)} which exists since Java 11 }
+     */
+    @Deprecated
     public static <T> T[] toArray(Collection<T> collection, IntFunction<T[]> arrayConstructor) {
         T[] array = arrayConstructor.apply(collection.size());
 
@@ -95,6 +99,16 @@ public final class Lists {
     }
 
     //</editor-fold>
+
+    @ToTest
+    public static <T> boolean equalElements(Collection<? super T> list1, Collection<? super T> list2) {
+        if (list1.size() != list2.size()) {
+            return false;
+        }
+
+        Set<?> intersection = Sets.intersect(list1, list2);
+        return intersection.size() == list1.size();
+    }
 
     public static <T, R extends List<T>> LinearCollector<T, R> receive(R receiver) {
         return new LinearCollector<>() {
