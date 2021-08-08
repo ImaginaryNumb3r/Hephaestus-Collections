@@ -20,8 +20,6 @@ public class ValueMap<K, V> extends HashMap<K, V> {
     private final Supplier<V> _constructor;
 
     //<editor-fold desc="Constructors">
-
-    //<editor-fold desc="Supplier Constructors">
     public ValueMap(int initialCapacity, float loadFactor, @NotNull Supplier<V> constructor) {
         super(initialCapacity, loadFactor);
         _constructor = constructor;
@@ -36,26 +34,23 @@ public class ValueMap<K, V> extends HashMap<K, V> {
         super(m);
         _constructor = constructor;
     }
-    //</editor-fold>
 
-    //<editor-fold desc="Value Constructors">
-    public ValueMap(int initialCapacity, float loadFactor, @NotNull V defaultValue) {
-        super(initialCapacity, loadFactor);
-        _constructor = () -> defaultValue;
+    public ValueMap(@NotNull Supplier<V> constructor) {
+        super();
+        _constructor = constructor;
     }
 
-    public ValueMap(int initialCapacity, @NotNull  V defaultValue) {
-        super(initialCapacity);
-        _constructor = () -> defaultValue;
-    }
-
-    public ValueMap(Map<? extends K, ? extends V> m, @NotNull V defaultValue) {
-        super(m);
-        _constructor = () -> defaultValue;
-    }
     //</editor-fold>
 
-    //</editor-fold>
+    @Override
+    public V get(Object key) {
+        V value = super.get(key);
+        if (value == null) {
+            value = _constructor.get();
+        }
+
+        return value;
+    }
 
     @Override
     public V put(K key, V value) {
@@ -93,6 +88,20 @@ public class ValueMap<K, V> extends HashMap<K, V> {
         Contract.checkNull(value);
 
         return super.merge(key, value, remappingFunction);
+    }
+
+    @Override
+    public boolean replace(K key, V oldValue, V newValue) {
+        Contract.checkNull(newValue);
+
+        return super.replace(key, oldValue, newValue);
+    }
+
+    @Override
+    public V replace(K key, V newValue) {
+        Contract.checkNull(newValue);
+
+        return super.replace(key, newValue);
     }
 
     @Override
