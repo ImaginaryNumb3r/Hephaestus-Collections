@@ -4,7 +4,7 @@
 
     <groupId>com.github.ImaginaryNumb3r</groupId>
     <artifactId>hephaestus-collections</artifactId>
-    <version>1.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
     <description>TODO</description>
     <name>${project.groupId}:${project.artifactId}:${project.version}</name>

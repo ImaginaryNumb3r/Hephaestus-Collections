@@ -38,7 +38,7 @@ public final class Sets {
      * @param <T> Element type match the collection. This is irrelevant for the algorithm. However, it should override hashCode().
      * @return a set that contains all unique elements within set1 and set2.
      */
-    public static <T> Set<T> disjoint(Set<T> set1, Set<T> set2) {
+    public static <T> Set<T> disjoint(Collection<T> set1, Collection<T> set2) {
         if (set1.isEmpty()) return Sets.of(set2);
         if (set2.isEmpty()) return Sets.of(set1);
 
@@ -51,7 +51,7 @@ public final class Sets {
         return hashSet;
     }
 
-    private static <T> void addUnique(Set<T> primary, Set<T> secondary, Set<T> container) {
+    private static <T> void addUnique(Collection<T> primary, Collection<T> secondary, Collection<T> container) {
         for (T item : primary) {
             if (!secondary.contains(item)) {
                 container.add(item);
@@ -67,14 +67,13 @@ public final class Sets {
      * @return a set that contains all common elements between set1 and set2.
      */
     @ToTest
-    public static <T> Set<T> intersect(Set<T> set1, Set<T> set2){
+    public static <T> Set<T> intersect(Collection<? extends T> set1, Collection<? extends T> set2){
         // Return empty set if either set is empty.
         if (set1.isEmpty() || set2.isEmpty()){
             return Collections.emptySet();
         }
 
-        Set<T> intersection;
-        intersection = new HashSet<>(set1.size());
+        Set<T> intersection = new HashSet<>();
 
         for (T item : set1) {
             if (set2.contains(item)){
@@ -104,7 +103,7 @@ public final class Sets {
      * @return a set of objects shared among all provided sets.
      */
     @ToTest
-    public static <T, C extends Set<T>> Set<T> intersectAll(Iterator<C> setIterator){
+    public static <T, C extends Collection<T>> Set<T> intersectAll(Iterator<C> setIterator){
         if (!setIterator.hasNext()){
             return Collections.emptySet();
         }
