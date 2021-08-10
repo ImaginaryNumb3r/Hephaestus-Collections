@@ -84,6 +84,26 @@ public class ValueMap<K, V> extends HashMap<K, V> {
     }
 
     @Override
+    public V compute(K key, BiFunction<? super K, ? super V, ? extends V> remappingFunction) {
+        BiFunction< K, V,  V> remapping =  (K k, V v) -> {
+            V v1 = v != null ? v : _constructor.get();
+            return remappingFunction.apply(k, v1);
+        };
+
+        return super.compute(key, remapping);
+    }
+
+    public V compute(K key, Function<? super V, ? extends V> remappingFunction) {
+        Function<V,  V> remapping =  value -> {
+            // Replace null with default and then forward to parameter function.
+            V v1 = value != null ? value : _constructor.get();
+            return remappingFunction.apply(v1);
+        };
+
+        return super.compute(key, (k, v) -> remapping.apply(v));
+    }
+
+    @Override
     public V merge(K key, V value, BiFunction<? super V, ? super V, ? extends V> remappingFunction) {
         Contract.checkNull(value);
 
